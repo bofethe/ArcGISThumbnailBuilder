@@ -25,11 +25,13 @@ h2:first-of-type {
 }
 
 #title-color .btn {
-  background-color: rgba(0, 255, 0, 0.8);
+  /* background-color: rgba(0, 255, 0, 0.8); */
+  background-color: #054173;
 }
 
 #category-color .btn {
-  background-color: rgba(0, 0, 255, 0.8);
+  /* background-color: rgba(0, 0, 255, 0.8); */
+  background-color: #FF6F5B;
 }
 
 .brand-logo {
