@@ -81,6 +81,32 @@
         </div>
 
         <div class="row">
+          <h2>Sensitivity</h2>
+            <div style="display: flex; 
+                        flex-direction: row; 
+                        align-items: center; 
+                        gap: 2em; 
+                        margin-bottom: 1em;">
+              <label style="display: flex; 
+                            align-items: center; 
+                            gap: 0.5em; 
+                            font-size: 1.2em; 
+                            margin: 0;">
+                <input name="sensitivity" type="radio" id="sensitivity-true" value="True" />
+                <span>True</span>
+              </label>
+              <label style="display: flex; 
+                            align-items: center; 
+                            gap: 0.5em; 
+                            font-size: 1.2em; 
+                            margin: 0;">
+                <input name="sensitivity" type="radio" id="sensitivity-false" value="False" checked/>
+                <span>False</span>
+              </label>
+            </div>
+        </div>
+
+        <div class="row">
           <h2>Background Image</h2>
           <input type="hidden" id="background-url" />
           <div class="input-field col s12">

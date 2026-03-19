@@ -55,7 +55,12 @@ var titleComponent = {
 var categoryComponent = {
   properties: {
     text: function() {
-      return document.querySelector('#category').value;
+      // Always use the selected value from the sidebar dropdown
+      return document.querySelector('#category') ? document.querySelector('#category').value : '';
+    },
+    isSensitive: function() {
+      var trueRadio = document.getElementById('sensitivity-true');
+      return trueRadio && trueRadio.checked;
     },
     bgColor: function() {
       return $("#category-color").colorpicker('getValue');
@@ -64,6 +69,10 @@ var categoryComponent = {
   draw: function() {
     this._bg();
     this._text();
+    // Add watermark if sensitive
+    if (this.properties.isSensitive()) {
+      this._watermark();
+    }
   },
   _bg: function() {
     ctx.fillStyle = this.properties.bgColor();
@@ -78,6 +87,17 @@ var categoryComponent = {
     ctx.font = '48px sans-serif';
     ctx.textAlign = "center";
     ctx.fillText(this.properties.text(), 0, 0);
+    ctx.restore();
+  },
+  _watermark: function() {
+    ctx.save();
+    ctx.globalAlpha = 0.5;
+    ctx.font = 'bold 60px sans-serif';
+    ctx.fillStyle = 'red';
+    ctx.textAlign = 'center';
+    ctx.translate(editCanvas.width / 2, editCanvas.height / 2);
+    ctx.rotate(-0.3);
+    ctx.fillText('SENSITIVE', 0, 0);
     ctx.restore();
   }
 }
@@ -181,7 +201,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Update Events
   document.querySelector('#title').addEventListener('keyup', draw);
-  document.querySelector('#category').addEventListener('change', draw);
+  // Sensitivity radio buttons
+  var sensTrue = document.getElementById('sensitivity-true');
+  var sensFalse = document.getElementById('sensitivity-false');
+  if (sensTrue && sensFalse) {
+    sensTrue.addEventListener('change', draw);
+    sensFalse.addEventListener('change', draw);
+  }
+  // For backward compatibility if select still exists
+  var catSelect = document.querySelector('#category');
+  if (catSelect) {
+    catSelect.addEventListener('change', draw);
+  }
   document.querySelector('#background')
     .addEventListener('change', draw);
   document.querySelector('#logo')
