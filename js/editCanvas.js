@@ -22,33 +22,40 @@ var titleComponent = {
     ctx.fillStyle = this.properties.bgColor();
     ctx.fillRect(0, 300, 500, 120);
   },
-  _text: function() {
-    editCanvas.letterSpacing = 2;
-    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-    ctx.font = '30px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
+_text: function() {
+  ctx.save();
+  editCanvas.letterSpacing = 2;
+  ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
 
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-      var words = text.split(' ');
-      var line = '';
+  const maxWidth = 450;
+  const lineHeight = 35;
+  const words = this.properties.text().split(' ');
+  let line = '';
+  let lines = [];
 
-      for (var n = 0; n < words.length; n++) {
-        var testLine = line + words[n] + ' ';
-        var metrics = context.measureText(testLine);
-        var testWidth = metrics.width;
-        if (testWidth > maxWidth && n > 0) {
-          context.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      context.fillText(line, x, y);
+  for (var n = 0; n < words.length; n++) {
+    var testLine = line + words[n] + ' ';
+    if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+      lines.push(line);
+      line = words[n] + ' ';
+    } else {
+      line = testLine;
     }
-    wrapText(ctx, this.properties.text(), 255, 326, 450, 35);
   }
+  lines.push(line);
+
+  const totalTextHeight = lines.length * lineHeight;
+  let y = 300 + (100 - totalTextHeight) / 2 + lineHeight / 2;
+
+  for (var i = 0; i < lines.length; i++) {
+    ctx.fillText(lines[i], 250, y);
+    y += lineHeight;
+  }
+  ctx.restore();
+}
 }
 
 // Category and Category Background
@@ -80,12 +87,13 @@ var categoryComponent = {
   },
   _text: function() {
     ctx.save();
-    ctx.translate(524, 200);
+    ctx.translate(550, 200);
     ctx.rotate(-0.5 * Math.PI);
     editCanvas.style.letterSpacing = 4;
     ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
     ctx.font = '48px sans-serif';
     ctx.textAlign = "center";
+    ctx.textBaseline = 'middle';
     ctx.fillText(this.properties.text(), 0, 0);
     ctx.restore();
   },
