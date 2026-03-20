@@ -1,0 +1,58 @@
+name: Request New Thumbnail Template
+description: Suggest a new ArcGIS Online thumbnail template
+title: "New Template Request: [Brief Description]"
+labels: ["template-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # New Thumbnail Template Request
+        Please provide the following details for your template request.
+
+  - type: textarea
+    attributes:
+      label: Template Description
+      description: Describe the new thumbnail template you'd like to request
+      placeholder: "e.g., A template for Hillsborough County Emergency Management"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Logo
+      description: Provide a link to the logo to include
+      placeholder: "https://example.com/logo.png"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Background
+      description: Describe the background style or provide a link to an image for the background of the thumbnail
+      placeholder: "https://example.com/background.png"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Primary Color
+      description: Provide color in HEX or RGB format
+      placeholder: "HEX: #FF5733 or RGB: rgb(255, 87, 51)"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Secondary Color
+      description: Provide color in HEX or RGB format
+      placeholder: "HEX: #33FF57 or RGB: rgb(51, 255, 87)"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Any other details or use cases
+      placeholder: "Optional additional information"
+    validations:
+      required: false
