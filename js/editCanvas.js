@@ -78,7 +78,7 @@ var categoryComponent = {
     this._text();
     // Add watermark if sensitive
     if (this.properties.isSensitive()) {
-      this._watermark();
+      this._sensitivity();
     }
   },
   _bg: function() {
@@ -97,7 +97,7 @@ var categoryComponent = {
     ctx.fillText(this.properties.text(), 0, 0);
     ctx.restore();
   },
-  _watermark: function() {
+  _sensitivity: function() {
     ctx.save();
     ctx.globalAlpha = 0.5;
     ctx.font = 'bold 60px sans-serif';
@@ -250,6 +250,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   if (getUrlParameter('logo')) {
     $("#logo-url").val(getUrlParameter('logo'));
+  }
+  if (getUrlParameter('sensitivity')) {
+    var sensParam = getUrlParameter('sensitivity');
+  if (sensParam === '1') {
+    var trueRadio = document.getElementById('sensitivity-true');
+    if (trueRadio) trueRadio.checked = true;
+    } else if (sensParam === '0') {
+    var falseRadio = document.getElementById('sensitivity-false');
+    if (falseRadio) falseRadio.checked = true;
+  }
   }
 
   // Select Dropdowns to Material Styles

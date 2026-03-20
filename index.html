@@ -13,11 +13,12 @@
 
 <body>
 
-  <nav>
+  <div id="page-background">
+  <nav class="navbar">
     <div class="nav-wrapper">
       <a href="./index.html" class="brand-logo">ArcGIS Thumbnail Builder</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="gallery.html" target="_self">Gallery</a></li>
+        <li><a href="templates.html" target="_self">Templates</a></li>
         <li><a href="help.html" target="_self">Help</a></li>
       </ul>
     </div>
@@ -49,7 +50,7 @@
         </div>
 
         <div class="row">
-          <a id="download-image" download="thumbnail_generated.png" class="waves-effect waves-light btn deep-purple lighten-2"><i class="material-icons left">save</i>Download</a>
+          <a id="download-image" download="thumbnail_generated.png" class="waves-effect waves-light btn download-btn"><i class="material-icons left">save</i>Download</a>
         </div>
       </div>
 
@@ -68,14 +69,13 @@
           <div class="input-field col s12">
             <select name="category" id="category">
             <option value="Web Map">Web Map</option>
-            <option value="Story Map">Story Map</option>
-            <option value="Web App">Web App</option>
+            <option value="Application">Application</option>
             <option value="Feature Service">Feature Service</option>
             <option value="Map Service">Map Service</option>
-            <option value="Collector App">Collector App</option>
+            <option value="Field Map">Field Map</option>
             <option value="Basemap">Basemap</option>
-            <option value="Dashboard">Dashboard</option>
             <option value="Document">Document</option>
+            <option value="Tool">Tool</option>
           </select>
           </div>
         </div>
@@ -111,7 +111,7 @@
           <input type="hidden" id="background-url" />
           <div class="input-field col s12">
             <div class="file-field input-field">
-              <div class="btn">
+              <div class="btn file-btn">
                 <span>File</span>
                 <input type="file" id="background">
               </div>
@@ -127,7 +127,7 @@
           <input type="hidden" id="logo-url" />
           <div class="input-field col s12">
             <div class="file-field input-field">
-              <div class="btn">
+              <div class="btn file-btn">
                 <span>File</span>
                 <input type="file" id="logo">
               </div>
@@ -145,14 +145,12 @@
 
   </div>
   <!-- /container -->
+  </div>
   <!-- Compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="./js/materialize-colorpicker.min.js"></script>
   <script src="./js/editCanvas.js"></script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-12419040-13"></script>
-  
-</body>
+
 
 </html>
