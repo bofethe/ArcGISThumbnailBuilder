@@ -187,14 +187,18 @@ var logoComponent = {
 
 // main function to draw / redraw canvas
 function draw() {
-  //Draw Title Component
   ctx.clearRect(0, 0, editCanvas.width, editCanvas.height);
   titleComponent.draw();
   categoryComponent.draw();
   backgroundComponent.draw();
   logoComponent.draw();
-
   //Store to local storage.. next
+}
+
+// Only redraw whats needed to avoid flashing when typing
+function updateTitleLive() {
+  ctx.clearRect(0, 300, 500, 120);
+  titleComponent.draw();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -208,7 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }).on('changeColor', draw);
 
   // Update Events
-  document.querySelector('#title').addEventListener('keyup', draw);
+  document.querySelector('#title').addEventListener('input', updateTitleLive);
+
   // Sensitivity radio buttons
   var sensTrue = document.getElementById('sensitivity-true');
   var sensFalse = document.getElementById('sensitivity-false');
